@@ -3,16 +3,13 @@ import ReactDOM from 'react-dom/client'
 import './styles/index.css'
 import App from './pages/App/App'
 import {BrowserRouter as Router} from 'react-router-dom'
+import {Provider} from 'react-redux'
+import {store} from './redux/store'
 
-
-function StartApp() {
-    return (
-        <Router basename={process.env.PUBLIC_URL}>
+ReactDOM.createRoot(document.getElementById('root') as HTMLDivElement).render(
+    <Router basename={process.env.PUBLIC_URL}>
+        <Provider store={store}>
             <App/>
-        </Router>
-    )
-}
-
-const container = document.getElementById('root') as HTMLDivElement
-const root = ReactDOM.createRoot(container)
-root.render(<StartApp/>)
+        </Provider>
+    </Router>
+)

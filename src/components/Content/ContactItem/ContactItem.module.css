@@ -16,7 +16,6 @@
 
 .wrapper img {
     width: 16px;
-    cursor: pointer;
 }
 
 .edit, .delete {
@@ -26,6 +25,7 @@
     display: none;
     align-content: center;
     justify-content: center;
+    cursor: pointer;
 }
 
 .edit:hover, .delete:hover {
@@ -34,7 +34,4 @@
 
 .wrapper:hover .edit, .wrapper:hover .delete {
     display: grid;
-}
-
-.name {
 }

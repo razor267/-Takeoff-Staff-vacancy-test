@@ -3,6 +3,32 @@
     grid-template-rows: max-content max-content auto;
     margin: 0 32px 32px 32px;
     grid-row-gap: 16px;
+    height: max-content;
+}
+
+.searchAndAddContact {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
+}
+
+.search {
+    box-shadow: 0 0 25px rgba(0, 0, 0, 0.04);
+    border: solid 2px var(--white);
+    outline: none;
+    border-radius: 16px;
+    font-size: 18px;
+    height: 32px;
+    color: var(--blueDark);
+}
+
+.search:hover {
+    border: solid 2px var(--green);
+}
+
+input::placeholder {
+    color: var(--grayDark);
+    padding-left: 32px;
 }
 
 .addContact {
@@ -12,6 +38,10 @@
     border: solid 2px var(--grayBackground);
     font-size: 18px;
     cursor: pointer;
+}
+
+.addContactText {
+    padding-right: 8px;
 }
 
 .addContact:hover {
@@ -32,7 +62,7 @@
     padding: 8px;
     background-color: var(--grayDark);
     border-radius: 16px;
-    color: var(--grayBlue);
+    color: var(--blueDark);
     box-shadow: 0 0 25px rgba(0, 0, 0, 0.04);
     margin-bottom: 16px;
 }

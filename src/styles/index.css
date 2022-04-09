@@ -4,7 +4,7 @@
   --black: #000000;
   --white: #ffffff;
   --grayDark: #cecece;
-  --grayBlue: #00008B;
+  --blueDark: #00008B;
 }
 
 * {
@@ -16,4 +16,5 @@ body {
   background-color: var(--green);
   color: var(--black);
   font-family: 'arial';
+  overflow-y: scroll;
 }

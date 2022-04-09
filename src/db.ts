@@ -1,11 +1,5 @@
-export type ContactType = {
-    id:number
-    name: string
-    surname: string
-    company: string
-    address: string
-    number: number
-}
+import {ContactType} from './types/types'
+
 export let contacts: ContactType[] = [
     {
         id: 1,
