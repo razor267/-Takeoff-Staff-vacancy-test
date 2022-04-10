@@ -26,7 +26,11 @@
     border: solid 2px var(--green);
 }
 
-input::placeholder {
+.search:focus {
+    border-color: var(--green);
+}
+
+.search::placeholder {
     color: var(--grayDark);
     padding-left: 32px;
 }
@@ -58,7 +62,8 @@ input::placeholder {
 .header {
     width: 100%;
     display: grid;
-    grid-template-columns: 15% 15% 20% 30% 10% auto;
+    column-gap: 16px;
+    grid-template-columns: 14% 14% 18% 30% 10% auto;
     justify-items: center;
     padding: 8px;
     background-color: var(--grayDark);

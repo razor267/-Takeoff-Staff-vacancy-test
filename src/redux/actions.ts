@@ -1,4 +1,4 @@
-import {ContactType} from '../types/types'
+import {ContactType, FormContactType} from '../types/types'
 
 export const actions = {
     //Первичное добавление всех контактов в стейт после их получения с сервера
@@ -7,8 +7,19 @@ export const actions = {
         contacts
     } as const),
     //удаляем выбранный контакт
-    removeContact: (contact: ContactType) => ({
+    removeContact: (id: number) => ({
         type: 'REMOVE_CONTACT',
+        id
+    } as const),
+    //добавляем новый контакт
+    addContact: (contact: FormContactType) => ({
+        type: 'ADD_CONTACT',
+        contact
+    } as const),
+    //редактируем контакт
+    editContact: (id: number, contact: FormContactType) => ({
+        type: 'EDIT_CONTACT',
+        id,
         contact
     } as const)
 }

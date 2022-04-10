@@ -1,14 +1,13 @@
-import React, {ChangeEvent, useEffect, useRef, useState} from 'react'
+import React, {ChangeEvent, useEffect, useState} from 'react'
 import styles from './Content.module.css'
 import plusLogo from '../../img/plus.svg'
 import {contacts} from '../../db'
-import {ContactItem} from './ContactItem/ContactItem'
-import {ContactType, StateType} from '../../types/types'
+import {ContactType, FormContactType, StateType} from '../../types/types'
 import {useDispatch, useSelector} from 'react-redux'
 import {actions} from '../../redux/actions'
-import {sort} from '../../utils/sort'
 import {RadialWhiteDiv} from '../RadialWhiteDiv/RadialWhiteDiv'
 import cn from 'classnames'
+import {sort} from '../../utils/sort'
 
 export const Content: React.FC = () => {
 
@@ -17,16 +16,18 @@ export const Content: React.FC = () => {
     const [visibleAddForm, setVisibleAddForm] = useState(false)
 
     const dispatch = useDispatch()
-    const items = useSelector((state: StateType) => state.contacts)
+    //создаем копию массива контактов для сортировки(чтобы не мутировать данные в стейте)
+    const items = sort(JSON.parse(JSON.stringify(useSelector((state: StateType) => state.contacts))))
+
 
     useEffect(() => {
         dispatch(actions.addAllContacts(contacts))  //добавляем все контакты в стейт при первичном рендере
-    }, [])
+    }, [dispatch])
 
     // Поиск в контактах по значению из input
     const search = (str: string) => {
         setHighLightText(str)
-        setContactParts(items.filter(item => item.surname.toLowerCase().includes(str.toLowerCase()) ||
+        setContactParts(items.filter((item: ContactType) => item.surname.toLowerCase().includes(str.toLowerCase()) ||
             item.name.toLowerCase().includes(str.toLowerCase()) ||
             item.company.toLowerCase().includes(str.toLowerCase()) ||
             item.address.toLowerCase().includes(str.toLowerCase()) ||
@@ -34,7 +35,12 @@ export const Content: React.FC = () => {
         ))
     }
 
-    const closeForm = () => {
+    const closeAddForm = () => {
+        setVisibleAddForm(false)
+    }
+
+    const addContact = (contact: FormContactType) => {
+        dispatch(actions.addContact(contact))
         setVisibleAddForm(false)
     }
 
@@ -61,11 +67,12 @@ export const Content: React.FC = () => {
             </div>
             {visibleAddForm &&
             <div className={styles.addContactForm}>
-                <RadialWhiteDiv type='addForm' closeForm={closeForm}/>
+                <RadialWhiteDiv type='addForm' closeAddForm={closeAddForm} addContact={addContact}/>
             </div>}
             {contactParts ?
-                contactParts.map(item => <RadialWhiteDiv type='contactItem' item={item} key={item.id} highLight={highLightText}/>) :
-                sort(items).map(item => <RadialWhiteDiv type='contactItem' item={item} key={item.id}/>)}
+                contactParts.map(item => <RadialWhiteDiv type='contactItem' item={item} key={item.id}
+                                                         highLight={highLightText}/>) :
+                items.map((item: ContactType) => <RadialWhiteDiv type='contactItem' item={item} key={item.id}/>)}
         </div>
     )
 }
