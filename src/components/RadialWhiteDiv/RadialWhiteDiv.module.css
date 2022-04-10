@@ -1,0 +1,41 @@
+.wrapper {
+    display: grid;
+    grid-template-columns: 15% 15% 20% 30% 10% 5% 5%;
+    align-items: center;
+    justify-items: center;
+    background-color: var(--white);
+    border-radius: 16px;
+    border: solid 2px var(--white);
+    padding: 8px;
+    min-height: 44px;
+}
+
+.wrapper:hover, .wrapperActive {
+    border: solid 2px var(--green);
+}
+
+.wrapper img {
+    width: 16px;
+}
+
+.edit, .delete, .save, .cancel {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    display: none;
+    align-content: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.save, .cancel {
+    display: grid;
+}
+
+.edit:hover, .delete:hover, .save:hover, .cancel:hover {
+    background: var(--grayDark);
+}
+
+.wrapper:hover .edit, .wrapper:hover .delete {
+    display: grid;
+}
