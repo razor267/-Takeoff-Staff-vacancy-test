@@ -1,39 +1,35 @@
-import React, {ChangeEvent, useEffect, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import styles from './Content.module.css'
-import plusLogo from '../../img/plus.svg'
 import {contacts} from '../../db'
 import {ContactType, FormContactType, StateType} from '../../types/types'
 import {useDispatch, useSelector} from 'react-redux'
 import {actions} from '../../redux/actions'
-import {RadialWhiteDiv} from '../RadialWhiteDiv/RadialWhiteDiv'
-import cn from 'classnames'
+import {ContactItem} from '../ContactItem/ContactItem'
 import {sort} from '../../utils/sort'
+import {SearchAndAddContact} from './SearchAndAddContact/SearchAndAddContact'
+import {HeaderTable} from './HeaderTable/HeaderTable'
+import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
 
 export const Content: React.FC = () => {
 
-    const [contactParts, setContactParts] = useState<ContactType[] | null>(null)
-    const [highLightText, setHighLightText] = useState<string>('')
+    const [searchStr, setSearchStr] = useState('')
     const [visibleAddForm, setVisibleAddForm] = useState(false)
 
     const dispatch = useDispatch()
     //создаем копию массива контактов для сортировки(чтобы не мутировать данные в стейте)
-    const items = sort(JSON.parse(JSON.stringify(useSelector((state: StateType) => state.contacts))))
+    let items = sort(JSON.parse(JSON.stringify(useSelector((state: StateType) => state.contacts))))
 
+    // Поиск в контактах по значению из input
+    items = items.filter((item: ContactType) => item.surname.toLowerCase().includes(searchStr.toLowerCase()) ||
+        item.name.toLowerCase().includes(searchStr.toLowerCase()) ||
+        item.company.toLowerCase().includes(searchStr.toLowerCase()) ||
+        item.address.toLowerCase().includes(searchStr.toLowerCase()) ||
+        item.number.toString().includes(searchStr.toLowerCase())
+    )
 
     useEffect(() => {
         dispatch(actions.addAllContacts(contacts))  //добавляем все контакты в стейт при первичном рендере
     }, [dispatch])
-
-    // Поиск в контактах по значению из input
-    const search = (str: string) => {
-        setHighLightText(str)
-        setContactParts(items.filter((item: ContactType) => item.surname.toLowerCase().includes(str.toLowerCase()) ||
-            item.name.toLowerCase().includes(str.toLowerCase()) ||
-            item.company.toLowerCase().includes(str.toLowerCase()) ||
-            item.address.toLowerCase().includes(str.toLowerCase()) ||
-            item.number.toString().includes(str.toLowerCase())
-        ))
-    }
 
     const closeAddForm = () => {
         setVisibleAddForm(false)
@@ -46,33 +42,34 @@ export const Content: React.FC = () => {
 
     return (
         <div className={styles.wrapper}>
-            <div className={styles.searchAndAddContact}>
-                <input className={styles.search}
-                       placeholder='Поиск...'
-                       onChange={(e: ChangeEvent<HTMLInputElement>) => search(e.currentTarget.value)}
-                />
-                <span className={cn(styles.addContact, {
-                    [styles.addContactActive]: visibleAddForm
-                })} onClick={() => setVisibleAddForm(!visibleAddForm)}>
-                    <img src={plusLogo} alt="plus"/>
-                    <span className={styles.addContactText}>Добавить контакт</span>
-                </span>
-            </div>
-            <div className={styles.header}>
-                <span>Фамилия</span>
-                <span>Имя</span>
-                <span>Компания</span>
-                <span>Адрес</span>
-                <span>Телефон</span>
-            </div>
+            <SearchAndAddContact
+                setSearchStr={setSearchStr}
+                visibleAddForm={visibleAddForm}
+                setVisibleAddForm={setVisibleAddForm}
+            />
+            <HeaderTable/>
             {visibleAddForm &&
             <div className={styles.addContactForm}>
-                <RadialWhiteDiv type='addForm' closeAddForm={closeAddForm} addContact={addContact}/>
+                <FormAddEditContact
+                    type='AddForm'
+                    initialValues={{
+                        surname: '',
+                        name: '',
+                        company: '',
+                        address: '',
+                        number: ''
+                    }}
+                    addContact={addContact}
+                    closeAddForm={closeAddForm}
+                />
             </div>}
-            {contactParts ?
-                contactParts.map(item => <RadialWhiteDiv type='contactItem' item={item} key={item.id}
-                                                         highLight={highLightText}/>) :
-                items.map((item: ContactType) => <RadialWhiteDiv type='contactItem' item={item} key={item.id}/>)}
+            {items.map((item: ContactType) =>
+                <ContactItem
+                    highLight={searchStr}
+                    item={item}
+                    key={item.id}
+                />
+            )}
         </div>
     )
 }
