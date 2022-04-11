@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {memo, useEffect, useState} from 'react'
 import styles from './Content.module.css'
 import {contacts} from '../../db'
 import {ContactType, FormContactType, StateType} from '../../types/types'
@@ -10,7 +10,7 @@ import {SearchAndAddContact} from './SearchAndAddContact/SearchAndAddContact'
 import {HeaderTable} from './HeaderTable/HeaderTable'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
 
-export const Content: React.FC = () => {
+export const Content: React.FC = memo(() => {
 
     const [searchStr, setSearchStr] = useState('')
     const [visibleAddForm, setVisibleAddForm] = useState(false)
@@ -72,4 +72,4 @@ export const Content: React.FC = () => {
             )}
         </div>
     )
-}
+})

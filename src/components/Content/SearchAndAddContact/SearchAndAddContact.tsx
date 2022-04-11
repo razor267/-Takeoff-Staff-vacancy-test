@@ -1,5 +1,5 @@
 import styles from './SearchAndAddContact.module.css'
-import React, {ChangeEvent} from 'react'
+import React, {ChangeEvent, memo} from 'react'
 import cn from 'classnames'
 import plusLogo from '../../../img/plus.svg'
 
@@ -8,7 +8,7 @@ type PropsType = {
     visibleAddForm: boolean
     setVisibleAddForm: (arg: boolean) => void
 }
-export const SearchAndAddContact: React.FC<PropsType> = ({setSearchStr, setVisibleAddForm, visibleAddForm}) => {
+export const SearchAndAddContact: React.FC<PropsType> = memo(({setSearchStr, setVisibleAddForm, visibleAddForm}) => {
     return (
         <div className={styles.searchAndAddContact}>
             <input className={styles.search}
@@ -25,4 +25,4 @@ export const SearchAndAddContact: React.FC<PropsType> = ({setSearchStr, setVisib
                 </span>
         </div>
     )
-}
+})

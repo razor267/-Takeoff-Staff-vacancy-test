@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {memo, useState} from 'react'
 import styles from './ContactItem.module.css'
 import editLogo from '../../img/edit.svg'
 import deleteLogo from '../../img/delete.svg'
@@ -13,7 +13,7 @@ type PropsType = {
     item: ContactType
     highLight: string
 }
-export const ContactItem: React.FC<PropsType> = ({item, highLight}) => {
+export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
 
     const dispatch = useDispatch()
 
@@ -71,4 +71,4 @@ export const ContactItem: React.FC<PropsType> = ({item, highLight}) => {
                 />}
         </div>
     )
-}
+})

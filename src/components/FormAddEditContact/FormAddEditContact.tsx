@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {memo} from 'react'
 import cn from 'classnames'
 import styles from '../ContactItem/ContactItem.module.css'
 import {Field, Form, Formik} from 'formik'
@@ -15,7 +15,7 @@ type PropsType = {
     contact?: ContactType
     initialValues: FormContactType
 }
-export const FormAddEditContact: React.FC<PropsType> = ({type, contact, addContact, closeAddForm, editContact, closeEditForm, initialValues}) => {
+export const FormAddEditContact: React.FC<PropsType> = memo(({type, contact, addContact, closeAddForm, editContact, closeEditForm, initialValues}) => {
 
     return (
         <Formik
@@ -46,4 +46,4 @@ export const FormAddEditContact: React.FC<PropsType> = ({type, contact, addConta
             </Form>
         </Formik>
     )
-}
+})
