@@ -1,22 +1,28 @@
 import React, {memo} from 'react'
 import {Field, Form, Formik} from 'formik'
+import {API} from '../../api/api'
+import {useNavigate} from 'react-router-dom'
 
-export const Login:React.FC = memo(() => {
+export const Login: React.FC = memo(() => {
+
+    const navigate = useNavigate()
+
     return (
         <Formik
             initialValues={{
-                firstName: '',
-                lastName: '',
-                email: '',
+                login: '',
+                password: ''
             }}
-            onSubmit={async (values) => {
-                await new Promise((r) => setTimeout(r, 500));
-                alert(JSON.stringify(values, null, 2));
+            onSubmit={async (data) => {
+                const res = await API.auth(data)
+                if (res?.status === 200) {
+                    navigate('/')
+                }
             }}
         >
             <Form>
                 <label htmlFor="login">Логин</label>
-                <Field id="login" name="login" placeholder="login" />
+                <Field id="login" name="login" placeholder="login"/>
 
                 <label htmlFor="password">Пароль</label>
                 <Field id="password" name="password" placeholder="password" type="password"/>
