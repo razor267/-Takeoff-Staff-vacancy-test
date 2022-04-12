@@ -1,7 +1,8 @@
 .wrapper {
+    width: 100%;
     display: grid;
-    grid-template-columns: max-content max-content;
-    margin: 24px 32px;
+    grid-template-columns: max-content max-content auto;
+    padding: 24px 32px;
     justify-self: start;
     align-items: center;
 }
@@ -13,4 +14,25 @@
 .title {
     font-size: 30px;
     padding-left: 36px;
+}
+
+.exit {
+    justify-self: end;
+    align-items: center;
+    margin-right: 32px;
+    padding: 8px;
+    cursor: pointer;
+    border-radius: 24px;
+    border: solid 2px var(--grayBackground);
+}
+
+.exit:hover {
+    background: var(--grayDark);
+    border-color: var(--green);
+}
+
+.exitIcon {
+    width: 25px;
+    padding-right: 8px;
+    vertical-align: middle;
 }

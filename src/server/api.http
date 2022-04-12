@@ -12,7 +12,7 @@ Accept: application/json
 GET http://localhost:3000/contacts
 Content-Type: application/json
 Accept: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTY0OTcwMzUyMiwiZXhwIjoxNjQ5NzA3MTIyfQ.qizhJZoF4Wy0gg2JwRbTLm1DdhfE9PaeaqPFiYCIVQo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFkbWluIiwicGFzc3dvcmQiOiJhZG1pbiIsImlhdCI6MTY0OTc2NDk3MSwiZXhwIjoxNjQ5NzY4NTcxfQ.LM_qU8rp7nURjNrl1SRVQHpoxAeyYx0BBhi7cJ1Misg
 
 ###
 

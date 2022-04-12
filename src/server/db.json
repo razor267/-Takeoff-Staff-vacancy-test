@@ -3,7 +3,25 @@
     {
       "id": 1,
       "login": "admin",
-      "password": "admin"
+      "password": "admin",
+      "contacts": [
+        {
+          "id": 1,
+          "name": "Алексей",
+          "surname": "Кузнецов",
+          "company": "ООО \"Логистик\"",
+          "address": "город Видное, наб. Сталина, 54",
+          "number": "79907697392"
+        },
+        {
+          "id": 2,
+          "name": "Есения",
+          "surname": "Афанасьева",
+          "company": "ОАО \"Ромашка\"",
+          "address": "пр. Ломоносова, 16",
+          "number": "738614122221"
+        }
+      ]
     }
   ],
   "contacts": [

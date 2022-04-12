@@ -21,5 +21,15 @@ export const actions = {
         type: 'EDIT_CONTACT',
         id,
         contact
+    } as const),
+    //авторизуем пользователя
+    login: (isAuth: boolean) => ({
+        type: 'LOGIN',
+        isAuth
+    } as const),
+    //логаут
+    logout: (isAuth: boolean) => ({
+        type: 'LOGOUT',
+        isAuth
     } as const)
 }
