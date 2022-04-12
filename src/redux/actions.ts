@@ -23,13 +23,13 @@ export const actions = {
         contact
     } as const),
     //авторизуем пользователя
-    login: (isAuth: boolean) => ({
+    login: (id: number) => ({
         type: 'LOGIN',
-        isAuth
+        id
     } as const),
     //логаут
-    logout: (isAuth: boolean) => ({
+    logout: () => ({
         type: 'LOGOUT',
-        isAuth
+        id: 0
     } as const)
 }

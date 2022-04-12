@@ -1,6 +1,5 @@
 import React, {memo, useEffect, useState} from 'react'
 import styles from './Content.module.css'
-import {contacts} from '../../db'
 import {ContactType, FormContactType, StateType} from '../../types/types'
 import {useDispatch, useSelector} from 'react-redux'
 import {actions} from '../../redux/actions'
@@ -9,11 +8,14 @@ import {sort} from '../../utils/sort'
 import {SearchAndAddContact} from './SearchAndAddContact/SearchAndAddContact'
 import {HeaderTable} from './HeaderTable/HeaderTable'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
+import {API} from '../../api/api'
 
 export const Content: React.FC = memo(() => {
 
     const [searchStr, setSearchStr] = useState('')
     const [visibleAddForm, setVisibleAddForm] = useState(false)
+
+    const userId =  useSelector((state: StateType) => state.userId)
 
     const dispatch = useDispatch()
     //создаем копию массива контактов для сортировки(чтобы не мутировать данные в стейте)
@@ -28,14 +30,24 @@ export const Content: React.FC = memo(() => {
     )
 
     useEffect(() => {
-        dispatch(actions.addAllContacts(contacts))  //добавляем все контакты в стейт при первичном рендере
-    }, [dispatch])
+        API.getContacts(userId)
+            .then(res => dispatch(actions.addAllContacts(res))) //добавляем все контакты в стейт при первичном рендере
+            .catch(error => console.log(error))
+    }, [dispatch, userId])
 
     const closeAddForm = () => {
         setVisibleAddForm(false)
     }
 
     const addContact = (contact: FormContactType) => {
+
+        // API.addContact(contact, userId)
+        //     .then(res => {
+        //         debugger
+        //         dispatch(actions.addContact(contact))
+        //     }) //добавляем новый контакт
+        //     .catch(error => console.log(error))
+
         dispatch(actions.addContact(contact))
         setVisibleAddForm(false)
     }

@@ -6,27 +6,27 @@ import {Login} from '../Login/Login'
 import {Navigate, Route, Routes} from 'react-router-dom'
 import {Page404} from '../404/Page404'
 import {useDispatch, useSelector} from 'react-redux'
-import {StateType} from '../../types/types'
 import {actions} from '../../redux/actions'
+import {StateType} from '../../types/types'
 
 function App() {
 
     const dispatch = useDispatch()
 
-    const token = localStorage.getItem('token')
+    const userId = useSelector((state: StateType) => state.userId)
 
-    const isAuth = useSelector((state: StateType) => state.isAuth)
+    const idLocalStorage = Number(localStorage.getItem('id'))
 
-    if (token) {
-        dispatch(actions.login(true))
+    if (idLocalStorage!== 0) {
+        dispatch(actions.login(idLocalStorage))
     }
 
     return (
         <div className={styles.appWrapper}>
             <Header/>
             <Routes>
-                <Route path='/' element={isAuth ? <Content/> : <Navigate to={'/login'}/>}/>
-                <Route path='/login' element={isAuth ? <Navigate to={'/'}/> : <Login/>}/>
+                <Route path='/' element={userId ? <Content/> : <Navigate to={'/login'}/>}/>
+                <Route path='/login' element={userId ? <Navigate to={'/'}/> : <Login/>}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
         </div>

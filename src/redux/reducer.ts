@@ -2,7 +2,7 @@ import {ActionsTypes, ContactType, StateType} from '../types/types'
 
 const initialState: StateType = {
     contacts: [],
-    isAuth : false
+    userId: 0
 }
 export const reducer = (state = initialState, action: ActionsTypes): StateType => {
     switch (action.type) {
@@ -48,12 +48,12 @@ export const reducer = (state = initialState, action: ActionsTypes): StateType =
         case 'LOGIN':
             return {
                 ...state,
-                isAuth: action.isAuth
+                userId: action.id
             }
         case 'LOGOUT':
             return {
                 ...state,
-                isAuth: action.isAuth
+                userId: action.id
             }
         default:
             return state

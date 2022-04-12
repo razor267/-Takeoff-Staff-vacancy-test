@@ -7,15 +7,16 @@ import {StateType} from '../../types/types'
 import {actions} from '../../redux/actions'
 import {useNavigate} from 'react-router-dom'
 
-export const Header:React.FC = memo(() => {
+export const Header: React.FC = memo(() => {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
-    const isAuth = useSelector((state: StateType) => state.isAuth)
+    const userId = useSelector((state: StateType) => state.userId)
 
     const logout = () => {
         localStorage.removeItem('token')
-        dispatch(actions.logout(false))
+        localStorage.removeItem('id')
+        dispatch(actions.logout())
         navigate('/login')
     }
 
@@ -23,7 +24,11 @@ export const Header:React.FC = memo(() => {
         <div className={styles.wrapper}>
             <img src={logoIcon} alt="Logo" className={styles.logo}/>
             <span className={styles.title}>Мои контакты</span>
-            {isAuth && <span className={styles.exit} onClick={logout}><img src={exitIcon} alt="exit" className={styles.exitIcon}/>Выход</span>}
+            {userId !== 0 &&
+            <span className={styles.exit} onClick={logout}>
+                <img src={exitIcon} alt="exit" className={styles.exitIcon}/>
+                Выход
+            </span>}
         </div>
     )
 })

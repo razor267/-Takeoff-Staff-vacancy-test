@@ -18,7 +18,7 @@ server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());
 server.use(middlewares);
 
-server.post('/auth/login', (req, res) => {
+server.post('/login', (req, res) => {
     const payload: { username: string; password: string } = { username: req.body.username, password: req.body.password };
     const user: { id: number; username: string; password: string } | null =
         (router.db.get('users') as any).find({ login: payload.username, password: payload.password }).value() ?? null;
@@ -33,7 +33,7 @@ server.post('/auth/login', (req, res) => {
     }
 });
 
-server.use(/^(?!\/auth).*$/, (req, res, next) => {
+server.use(/^(?!\/).*$/, (req, res, next) => {
     if (req.headers.authorization === undefined || req.headers.authorization.split(' ')[0] !== 'Bearer') {
         const status = 401;
         const message = 'Ошибка авторизации';

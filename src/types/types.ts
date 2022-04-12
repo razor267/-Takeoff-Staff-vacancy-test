@@ -19,7 +19,7 @@ export type FormContactType = {
 
 export type StateType = {
     contacts: ContactType[]
-    isAuth: boolean
+    userId: number
 }
 
 type InferActionsTypes<T> = T extends {[key: string]: infer U} ? U : never

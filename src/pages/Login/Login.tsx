@@ -14,7 +14,8 @@ export const Login: React.FC = memo(() => {
         const res = await API.auth(data)
         if (res?.status === 200) {
             localStorage.setItem('token', res.data.accessToken)
-            dispatch(actions.login(true))
+            localStorage.setItem('id', res.data.id)
+            dispatch(actions.login(res.data.id))
             navigate('/')
         }
     }
