@@ -2,11 +2,12 @@ import React, {memo, useState} from 'react'
 import styles from './ContactItem.module.css'
 import editLogo from '../../img/edit.svg'
 import deleteLogo from '../../img/delete.svg'
-import {ContactType, FormContactType} from '../../types/types'
+import {ContactType} from '../../types/types'
 import {useDispatch} from 'react-redux'
 import {highLightText} from '../../utils/highLightText/highLightText'
 import {actions} from '../../redux/actions'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
+import {API} from '../../api/api'
 
 
 type PropsType = {
@@ -21,13 +22,19 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
 
     const {name, surname, company, address, number} = item
 
-    const editContact = (id: number, contact: FormContactType) => {
+    const editContact = (id: number, contact: ContactType) => {
         dispatch(actions.editContact(id, contact))
         setVisibleEditForm(false)
     }
 
     const closeEditForm = () => {
         setVisibleEditForm(false)
+    }
+
+    const removeContact = () => {
+        API.removeContact(item.id)
+            .then(() => dispatch(actions.removeContact(item.id)))
+            .catch(error => console.log(error))
     }
 
 
@@ -51,7 +58,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
                     <span
                         title='Удалить'
                         className={styles.delete}
-                        onClick={() => dispatch(actions.removeContact(item?.id))}
+                        onClick={removeContact}
                     >
                         <img src={deleteLogo} alt="delete"/>
                     </span>
@@ -59,11 +66,13 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
                 <FormAddEditContact
                     type='EditForm'
                     initialValues={{
+                        id: item.id,
                         surname: item.surname,
                         name: item.name,
                         company: item.company,
                         address: item.address,
-                        number: item.number
+                        number: item.number,
+                        userId: item.userId
                     }}
                     editContact={editContact}
                     closeEditForm={closeEditForm}

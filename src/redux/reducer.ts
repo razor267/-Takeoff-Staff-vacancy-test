@@ -24,7 +24,8 @@ export const reducer = (state = initialState, action: ActionsTypes): StateType =
                 surname: action.contact.surname,
                 company: action.contact.company,
                 address: action.contact.address,
-                number: action.contact.number
+                number: action.contact.number,
+                userId: action.contact.userId
             }
             return {
                 ...state,

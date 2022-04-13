@@ -1,5 +1,5 @@
 import axios from 'axios'
-import {FormContactType} from '../types/types'
+import {ContactType} from '../types/types'
 
 type LoginType = {
     login: string
@@ -15,12 +15,17 @@ export const API = {
             .catch(error => console.log(error))
     },
     getContacts(id: number) {
-        return axios.get(`http://localhost:3000/users/${id}`)
-            .then(res => res.data.contacts)
+        return axios.get(`http://localhost:3000/contacts?userId=${id}`)
+            .then(res => res.data)
             .catch(error => console.log(error))
     },
-    addContact(contact: FormContactType, id: number) {
+    addContact(contact: ContactType, id: number) {
         return axios.post(`http://localhost:3000/users/${id}`)
+            .then(res => res)
+            .catch(error => console.log(error))
+    },
+    removeContact(id: number) {
+        return axios.delete(`http://localhost:3000/contacts/${id}`)
             .then(res => res)
             .catch(error => console.log(error))
     }

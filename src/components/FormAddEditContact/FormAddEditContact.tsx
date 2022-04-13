@@ -4,16 +4,16 @@ import styles from '../ContactItem/ContactItem.module.css'
 import {Field, Form, Formik} from 'formik'
 import saveLogo from '../../img/save.svg'
 import cancelLogo from '../../img/cancel.svg'
-import {ContactType, FormContactType} from '../../types/types'
+import {ContactType} from '../../types/types'
 
 type PropsType = {
     closeAddForm?: () => void
     closeEditForm?: () => void
-    addContact?: (contact: FormContactType) => void
-    editContact?: (id: number, contact: FormContactType) => void
+    addContact?: (contact: ContactType) => void
+    editContact?: (id: number, contact: ContactType) => void
     type: 'AddForm' | 'EditForm'
     contact?: ContactType
-    initialValues: FormContactType
+    initialValues: ContactType
 }
 export const FormAddEditContact: React.FC<PropsType> = memo(({type, contact, addContact, closeAddForm, editContact, closeEditForm, initialValues}) => {
 

@@ -7,14 +7,7 @@ export type ContactType = {
     company: string
     address: string
     number: string
-}
-
-export type FormContactType = {
-    name: string
-    surname: string
-    company: string
-    address: string
-    number: string
+    userId: number
 }
 
 export type StateType = {

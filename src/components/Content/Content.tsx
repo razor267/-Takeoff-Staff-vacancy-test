@@ -1,6 +1,6 @@
 import React, {memo, useEffect, useState} from 'react'
 import styles from './Content.module.css'
-import {ContactType, FormContactType, StateType} from '../../types/types'
+import {ContactType, StateType} from '../../types/types'
 import {useDispatch, useSelector} from 'react-redux'
 import {actions} from '../../redux/actions'
 import {ContactItem} from '../ContactItem/ContactItem'
@@ -39,7 +39,7 @@ export const Content: React.FC = memo(() => {
         setVisibleAddForm(false)
     }
 
-    const addContact = (contact: FormContactType) => {
+    const addContact = (contact: ContactType) => {
 
         // API.addContact(contact, userId)
         //     .then(res => {
@@ -65,11 +65,13 @@ export const Content: React.FC = memo(() => {
                 <FormAddEditContact
                     type='AddForm'
                     initialValues={{
+                        id: 0,
                         surname: '',
                         name: '',
                         company: '',
                         address: '',
-                        number: ''
+                        number: '',
+                        userId: userId
                     }}
                     addContact={addContact}
                     closeAddForm={closeAddForm}
