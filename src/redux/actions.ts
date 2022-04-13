@@ -12,15 +12,16 @@ export const actions = {
         id
     } as const),
     //добавляем новый контакт
-    addContact: (contact: ContactType) => ({
+    addContact: (contact: ContactType, id: number) => ({
         type: 'ADD_CONTACT',
-        contact
+        contact,
+        id
     } as const),
     //редактируем контакт
-    editContact: (id: number, contact: ContactType) => ({
+    editContact: (contact: ContactType, id: number) => ({
         type: 'EDIT_CONTACT',
-        id,
-        contact
+        contact,
+        id
     } as const),
     //авторизуем пользователя
     login: (id: number) => ({

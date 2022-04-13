@@ -19,7 +19,7 @@ export const reducer = (state = initialState, action: ActionsTypes): StateType =
             }
         case 'ADD_CONTACT':
             const newContact: ContactType = {
-                id: state.contacts[state.contacts.length - 1].id + 1,
+                id: action.id,
                 name: action.contact.name,
                 surname: action.contact.surname,
                 company: action.contact.company,
@@ -40,6 +40,7 @@ export const reducer = (state = initialState, action: ActionsTypes): StateType =
                     item.company = action.contact.company
                     item.address = action.contact.address
                     item.number = action.contact.number
+                    item.userId = action.contact.userId
                 }
             })
             return {

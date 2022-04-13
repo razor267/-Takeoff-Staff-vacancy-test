@@ -10,7 +10,7 @@ type PropsType = {
     closeAddForm?: () => void
     closeEditForm?: () => void
     addContact?: (contact: ContactType) => void
-    editContact?: (id: number, contact: ContactType) => void
+    editContact?: (contact: ContactType, id: number) => void
     type: 'AddForm' | 'EditForm'
     contact?: ContactType
     initialValues: ContactType
@@ -22,7 +22,7 @@ export const FormAddEditContact: React.FC<PropsType> = memo(({type, contact, add
             initialValues={initialValues}
             onSubmit={(data) => {
                 if (addContact) addContact(data)
-                if (editContact && contact) editContact(contact.id, data)
+                if (editContact && contact) editContact(data, contact.id)
             }}
         >
             <Form className={cn(styles.wrapper, styles.wrapperActive)}>

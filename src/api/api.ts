@@ -20,13 +20,40 @@ export const API = {
             .catch(error => console.log(error))
     },
     addContact(contact: ContactType, id: number) {
-        return axios.post(`http://localhost:3000/users/${id}`)
+        return axios.post('http://localhost:3000/contacts/', {
+            id: id,
+            name: contact.name,
+            surname: contact.surname,
+            company: contact.company,
+            address: contact.address,
+            number: contact.number,
+            userId: contact.userId
+        })
+            .then(res => res)
+            .catch(error => console.log(error))
+    },
+    editContact(contact: ContactType, id: number) {
+        return axios.put(`http://localhost:3000/contacts/${id}`, {
+            id: id,
+            name: contact.name,
+            surname: contact.surname,
+            company: contact.company,
+            address: contact.address,
+            number: contact.number,
+            userId: contact.userId
+        })
             .then(res => res)
             .catch(error => console.log(error))
     },
     removeContact(id: number) {
         return axios.delete(`http://localhost:3000/contacts/${id}`)
             .then(res => res)
+            .catch(error => console.log(error))
+    },
+    getMaxContactId() {
+        return axios.get('http://localhost:3000/contacts')
+            // получаем максимальный id контактов
+            .then(res => res.data[res.data.length - 1].id)
             .catch(error => console.log(error))
     }
 }

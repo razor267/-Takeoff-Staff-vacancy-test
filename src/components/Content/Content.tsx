@@ -15,7 +15,7 @@ export const Content: React.FC = memo(() => {
     const [searchStr, setSearchStr] = useState('')
     const [visibleAddForm, setVisibleAddForm] = useState(false)
 
-    const userId =  useSelector((state: StateType) => state.userId)
+    const userId = useSelector((state: StateType) => state.userId)
 
     const dispatch = useDispatch()
     //создаем копию массива контактов для сортировки(чтобы не мутировать данные в стейте)
@@ -31,7 +31,8 @@ export const Content: React.FC = memo(() => {
 
     useEffect(() => {
         API.getContacts(userId)
-            .then(res => dispatch(actions.addAllContacts(res))) //добавляем все контакты в стейт при первичном рендере
+            //добавляем все контакты авторизованного пользователя в стейт при первичном рендере
+            .then(res => dispatch(actions.addAllContacts(res)))
             .catch(error => console.log(error))
     }, [dispatch, userId])
 
@@ -40,16 +41,16 @@ export const Content: React.FC = memo(() => {
     }
 
     const addContact = (contact: ContactType) => {
-
-        // API.addContact(contact, userId)
-        //     .then(res => {
-        //         debugger
-        //         dispatch(actions.addContact(contact))
-        //     }) //добавляем новый контакт
-        //     .catch(error => console.log(error))
-
-        dispatch(actions.addContact(contact))
-        setVisibleAddForm(false)
+        API.getMaxContactId()
+            .then(res => {
+                API.addContact(contact, res + 1)
+                    .then(()=> {
+                        dispatch(actions.addContact(contact, res + 1))
+                        setVisibleAddForm(false)
+                    })
+                    .catch(error => console.log(error))
+            })
+            .catch(error => console.log(error))
     }
 
     return (

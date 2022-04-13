@@ -22,9 +22,13 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
 
     const {name, surname, company, address, number} = item
 
-    const editContact = (id: number, contact: ContactType) => {
-        dispatch(actions.editContact(id, contact))
-        setVisibleEditForm(false)
+    const editContact = (contact: ContactType, id: number) => {
+        API.editContact(contact, id)
+            .then(() => {
+                dispatch(actions.editContact(contact, id))
+                setVisibleEditForm(false)
+            })
+            .catch(error => console.log(error))
     }
 
     const closeEditForm = () => {
@@ -36,7 +40,6 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
             .then(() => dispatch(actions.removeContact(item.id)))
             .catch(error => console.log(error))
     }
-
 
     //если форма редактирования контакта закрыта показать контакт, иначе форму редактированния
     return (
