@@ -8,6 +8,7 @@ import {Page404} from '../404/Page404'
 import {useDispatch, useSelector} from 'react-redux'
 import {actions} from '../../redux/actions'
 import {StateType} from '../../types/types'
+import {Registration} from '../Registration/Registration'
 
 function App() {
 
@@ -27,6 +28,7 @@ function App() {
             <Routes>
                 <Route path='/' element={userId ? <Content/> : <Navigate to={'/login'}/>}/>
                 <Route path='/login' element={userId ? <Navigate to={'/'}/> : <Login/>}/>
+                <Route path='/reg' element={userId ? <Navigate to={'/'}/> : <Registration/>}/>
                 <Route path='*' element={<Page404/>}/>
             </Routes>
         </div>

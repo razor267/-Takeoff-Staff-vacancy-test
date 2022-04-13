@@ -17,13 +17,14 @@ export const Header: React.FC = memo(() => {
         localStorage.removeItem('token')
         localStorage.removeItem('id')
         dispatch(actions.logout())
+        dispatch(actions.clearContacts())
         navigate('/login')
     }
 
     return (
         <div className={styles.wrapper}>
-            <img src={logoIcon} alt="Logo" className={styles.logo}/>
-            <span className={styles.title}>Мои контакты</span>
+            <img src={logoIcon} alt="Logo" className={styles.logo} onClick={() => navigate('/')}/>
+            <span className={styles.title} onClick={() => navigate('/')}>Мои контакты</span>
             {userId !== 0 &&
             <span className={styles.exit} onClick={logout}>
                 <img src={exitIcon} alt="exit" className={styles.exitIcon}/>

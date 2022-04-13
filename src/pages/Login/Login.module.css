@@ -1,0 +1,41 @@
+.wrapper {
+    display: grid;
+    height: max-content;
+    margin-top: 160px;
+    row-gap: 16px;
+    justify-content: center;
+    justify-items: end;
+    align-items: center;
+}
+
+.input {
+    margin-left: 16px;
+    height: 24px;
+    border: solid 2px var(--green);
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    text-align: center;
+}
+
+.input:hover, .input:focus {
+    border-color: var(--greenDark);
+}
+
+.input::placeholder {
+    color: var(--grayDark);
+}
+
+.button {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 32px;
+    justify-self: center;
+    border: solid 2px var(--green);
+    border-radius: 16px;
+    background: var(--grayDark);
+}
+
+.button:hover {
+    border-color: var(--greenDark);
+}

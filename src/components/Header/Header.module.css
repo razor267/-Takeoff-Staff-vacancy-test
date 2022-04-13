@@ -9,11 +9,13 @@
 
 .logo {
     width: 60px;
+    cursor: pointer;
 }
 
 .title {
     font-size: 30px;
     padding-left: 36px;
+    cursor: pointer;
 }
 
 .exit {

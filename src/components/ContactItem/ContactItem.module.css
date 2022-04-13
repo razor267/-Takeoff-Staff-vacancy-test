@@ -62,7 +62,7 @@
 }
 
 .input:focus {
-    border-color: #10c610;
+    border-color: var(--greenDark);
 }
 
 .input::placeholder {

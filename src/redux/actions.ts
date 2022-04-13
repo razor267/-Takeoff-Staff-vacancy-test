@@ -6,6 +6,10 @@ export const actions = {
         type: 'ADD_ALL_CONTACTS',
         contacts
     } as const),
+    //Очистка контактов в стейте после выхода
+    clearContacts: () => ({
+        type: 'CLEAR_CONTACTS'
+    } as const),
     //удаляем выбранный контакт
     removeContact: (id: number) => ({
         type: 'REMOVE_CONTACT',

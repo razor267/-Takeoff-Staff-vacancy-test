@@ -57,6 +57,11 @@ export const reducer = (state = initialState, action: ActionsTypes): StateType =
                 ...state,
                 userId: action.id
             }
+        case 'CLEAR_CONTACTS':
+            return {
+                ...state,
+                contacts: []
+            }
         default:
             return state
     }
