@@ -7,7 +7,7 @@ import {useDispatch} from 'react-redux'
 import {highLightText} from '../../utils/highLightText/highLightText'
 import {actions} from '../../redux/actions'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
-import {API} from '../../api/api'
+import {contactsAPI} from '../../api/contactsAPI'
 
 
 type PropsType = {
@@ -23,7 +23,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
     const {name, surname, company, address, number} = item
 
     const editContact = (contact: ContactType, id: number) => {
-        API.editContact(contact, id)
+        contactsAPI.editContact(contact, id)
             .then(() => {
                 dispatch(actions.editContact(contact, id))
                 setVisibleEditForm(false)
@@ -36,7 +36,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
     }
 
     const removeContact = () => {
-        API.removeContact(item.id)
+        contactsAPI.removeContact(item.id)
             .then(() => dispatch(actions.removeContact(item.id)))
             .catch(error => console.log(error))
     }

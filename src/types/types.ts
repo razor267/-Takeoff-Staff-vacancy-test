@@ -15,5 +15,10 @@ export type StateType = {
     userId: number
 }
 
+export type UserType = {
+    login: string
+    password: string
+}
+
 type InferActionsTypes<T> = T extends {[key: string]: infer U} ? U : never
 export type ActionsTypes = ReturnType<InferActionsTypes<typeof actions>>

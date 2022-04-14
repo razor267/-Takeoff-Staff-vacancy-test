@@ -8,7 +8,7 @@ import {sort} from '../../utils/sort'
 import {SearchAndAddContact} from './SearchAndAddContact/SearchAndAddContact'
 import {HeaderTable} from './HeaderTable/HeaderTable'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
-import {API} from '../../api/api'
+import {contactsAPI} from '../../api/contactsAPI'
 
 export const Content: React.FC = memo(() => {
 
@@ -30,7 +30,7 @@ export const Content: React.FC = memo(() => {
     )
 
     useEffect(() => {
-        API.getContacts(userId)
+        contactsAPI.getContacts(userId)
             //добавляем все контакты авторизованного пользователя в стейт при первичном рендере
             .then(res => dispatch(actions.addAllContacts(res)))
             .catch(error => console.log(error))
@@ -41,9 +41,9 @@ export const Content: React.FC = memo(() => {
     }
 
     const addContact = (contact: ContactType) => {
-        API.getMaxContactId()
+        contactsAPI.getMaxContactId()
             .then(res => {
-                API.addContact(contact, res + 1)
+                contactsAPI.addContact(contact, res + 1)
                     .then(()=> {
                         dispatch(actions.addContact(contact, res + 1))
                         setVisibleAddForm(false)

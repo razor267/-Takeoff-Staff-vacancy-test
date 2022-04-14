@@ -39,3 +39,7 @@
 .button:hover {
     border-color: var(--greenDark);
 }
+
+.delText {
+    color: #e50606;
+}
