@@ -4,15 +4,17 @@ import cn from 'classnames'
 import plusLogo from '../../../img/plus.svg'
 
 type PropsType = {
+    searchStr: string
     setSearchStr: (str: string) => void
     visibleAddForm: boolean
     setVisibleAddForm: (arg: boolean) => void
 }
-export const SearchAndAddContact: React.FC<PropsType> = memo(({setSearchStr, setVisibleAddForm, visibleAddForm}) => {
+export const SearchAndAddContact: React.FC<PropsType> = memo(({searchStr, setSearchStr, setVisibleAddForm, visibleAddForm}) => {
     return (
         <div className={styles.searchAndAddContact}>
             <input className={styles.search}
                    placeholder='Поиск...'
+                   value={searchStr}
                    onChange={(e: ChangeEvent<HTMLInputElement>) => {
                        setSearchStr(e.currentTarget.value)
                    }}

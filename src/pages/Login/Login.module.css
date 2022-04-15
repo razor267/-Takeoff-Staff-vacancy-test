@@ -1,10 +1,11 @@
 .wrapper {
     display: grid;
     height: max-content;
+    width: 100%;
     margin-top: 160px;
     row-gap: 16px;
     justify-content: center;
-    justify-items: end;
+    justify-items: center;
     align-items: center;
 }
 
@@ -26,6 +27,10 @@
     color: var(--grayDark);
 }
 
+.login {
+    padding-left: 10px;
+}
+
 .button {
     cursor: pointer;
     font-size: 16px;
@@ -40,6 +45,27 @@
     border-color: var(--greenDark);
 }
 
-.delText {
-    color: #e50606;
+.error {
+    text-align: end;
 }
+
+.redText, .error {
+    color: var(--red)
+}
+
+.errorInput, .errorInput:hover, .errorInput:focus {
+    border-color: var(--red);
+}
+
+.cancelButton {
+    margin-left: 16px;
+}
+
+.loginReg {
+    padding-left: 90px;
+}
+
+.passwordReg {
+    padding-left: 80px;
+}
+

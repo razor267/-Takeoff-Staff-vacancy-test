@@ -9,11 +9,15 @@ import {SearchAndAddContact} from './SearchAndAddContact/SearchAndAddContact'
 import {HeaderTable} from './HeaderTable/HeaderTable'
 import {FormAddEditContact} from '../FormAddEditContact/FormAddEditContact'
 import {contactsAPI} from '../../api/contactsAPI'
+import {useSearchParams} from 'react-router-dom'
 
 export const Content: React.FC = memo(() => {
-
     const [searchStr, setSearchStr] = useState('')
     const [visibleAddForm, setVisibleAddForm] = useState(false)
+
+    let [searchParams, setSearchParams] = useSearchParams()
+
+    const searchQuery = searchParams.get('search') || ''
 
     const userId = useSelector((state: StateType) => state.userId)
 
@@ -30,8 +34,22 @@ export const Content: React.FC = memo(() => {
     )
 
     useEffect(() => {
+        if (searchStr !== '') {
+            setSearchParams({search: searchStr})
+        } else {
+            setSearchParams('')
+        }
+    }, [searchStr, setSearchParams])
+
+    useEffect(() => {
+        if (searchQuery !== '') {
+            setSearchStr(searchQuery)
+        }
+    }, [searchQuery, setSearchStr])
+
+    useEffect(() => {
         contactsAPI.getContacts(userId)
-            //добавляем все контакты авторизованного пользователя в стейт при первичном рендере
+            //добавляем все контакты авторизованного пользователя в стейт
             .then(res => dispatch(actions.addAllContacts(res)))
             .catch(error => console.log(error))
     }, [dispatch, userId])
@@ -44,7 +62,7 @@ export const Content: React.FC = memo(() => {
         contactsAPI.getMaxContactId()
             .then(res => {
                 contactsAPI.addContact(contact, res + 1)
-                    .then(()=> {
+                    .then(() => {
                         dispatch(actions.addContact(contact, res + 1))
                         setVisibleAddForm(false)
                     })
@@ -56,6 +74,7 @@ export const Content: React.FC = memo(() => {
     return (
         <div className={styles.wrapper}>
             <SearchAndAddContact
+                searchStr={searchStr}
                 setSearchStr={setSearchStr}
                 visibleAddForm={visibleAddForm}
                 setVisibleAddForm={setVisibleAddForm}

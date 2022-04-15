@@ -8,7 +8,7 @@ export const usersAPI = {
             password: user.password
         })
             .then(res => res)
-            .catch(error => console.log(error))
+            .catch(error => error)
     },
     addUser(user: UserType, id: number) {
         return instance.post('users/', {

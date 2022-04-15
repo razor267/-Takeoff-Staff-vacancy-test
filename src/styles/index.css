@@ -1,21 +1,23 @@
 :root {
-  --green: #b7e7b7;
-  --greenDark: #10c610;
-  --grayBackground: #f6f6f6;
-  --black: #000000;
-  --white: #ffffff;
-  --grayDark: #cecece;
-  --blueDark: #00008B;
+    --green: #b7e7b7;
+    --greenDark: #10c610;
+    --grayBackground: #f6f6f6;
+    --black: #000000;
+    --white: #ffffff;
+    --grayDark: #cecece;
+    --blueDark: #00008B;
+    --red: #e50606;
 }
 
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
+
 body {
-  background-color: var(--green);
-  color: var(--black);
-  font-family: 'arial';
-  overflow-y: scroll;
+    background-color: var(--green);
+    color: var(--black);
+    font-family: 'arial';
+    overflow-y: scroll;
 }
