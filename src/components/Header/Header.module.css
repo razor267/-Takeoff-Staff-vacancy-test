@@ -38,3 +38,23 @@
     padding-right: 8px;
     vertical-align: middle;
 }
+
+@media screen and (max-width: 640px) {
+    .wrapper {
+        grid-template-columns: max-content max-content;
+        row-gap: 16px;
+        padding: 24px;
+    }
+    .logo {
+        width: 40px;
+    }
+
+    .title {
+        font-size: 18px;
+        padding-left: 0;
+    }
+
+    .exit {
+        margin-right: 0;
+    }
+}

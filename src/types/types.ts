@@ -6,7 +6,7 @@ export type ContactType = {
     surname: string
     company: string
     address: string
-    number: string
+    number: number | null
     userId: number
 }
 

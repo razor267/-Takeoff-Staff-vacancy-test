@@ -50,7 +50,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
                     <span>{highLight ? highLightText(highLight, name) : name}</span>
                     <span>{highLight ? highLightText(highLight, company) : company}</span>
                     <span>{highLight ? highLightText(highLight, address) : address}</span>
-                    <span>{highLight ? highLightText(highLight, number.toString()) : number}</span>
+                    <span>{highLight && number ? highLightText(highLight, number.toString()) : number}</span>
                     <span
                         title='Редактировать'
                         className={styles.edit}

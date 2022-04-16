@@ -30,7 +30,7 @@ export const Content: React.FC = memo(() => {
         item.name.toLowerCase().includes(searchStr.toLowerCase()) ||
         item.company.toLowerCase().includes(searchStr.toLowerCase()) ||
         item.address.toLowerCase().includes(searchStr.toLowerCase()) ||
-        item.number.toString().includes(searchStr.toLowerCase())
+        item.number?.toString().includes(searchStr.toLowerCase())
     )
 
     useEffect(() => {
@@ -90,7 +90,7 @@ export const Content: React.FC = memo(() => {
                         name: '',
                         company: '',
                         address: '',
-                        number: '',
+                        number: null,
                         userId: userId
                     }}
                     addContact={addContact}

@@ -27,6 +27,12 @@
     color: var(--grayDark);
 }
 
+.login, .password, .loginReg, .passwordReg, .passwordReplyReg {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+}
+
 .login {
     padding-left: 10px;
 }
@@ -45,6 +51,11 @@
     border-color: var(--greenDark);
 }
 
+.removeTitle {
+    text-align: center;
+    padding: 0 8px;
+}
+
 .error {
     text-align: end;
 }
@@ -57,15 +68,44 @@
     border-color: var(--red);
 }
 
-.cancelButton {
-    margin-left: 16px;
-}
-
 .loginReg {
     padding-left: 90px;
 }
 
 .passwordReg {
     padding-left: 80px;
+}
+
+.buttonWrapper {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    column-gap: 16px;
+}
+
+@media screen and (max-width: 640px) {
+    .wrapper {
+        margin-top: 10px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .buttonWrapper {
+        grid-template-columns: max-content;
+        row-gap: 16px;
+    }
+
+    .login, .password, .loginReg, .passwordReg, .passwordReplyReg {
+        grid-template-columns: max-content;
+        row-gap: 8px;
+        justify-items: center;
+    }
+
+    .login {
+        padding-left: 0;
+    }
+
+    .loginReg, .passwordReg {
+        padding-left: 0;
+    }
 }
 

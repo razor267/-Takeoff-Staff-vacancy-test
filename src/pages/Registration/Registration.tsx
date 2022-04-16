@@ -1,4 +1,4 @@
-import React, {ChangeEvent, memo, useState} from 'react'
+import React, {memo} from 'react'
 import {Field, Form, Formik} from 'formik'
 import styles from '../Login/Login.module.css'
 import {useNavigate} from 'react-router-dom'
@@ -72,7 +72,7 @@ export const Registration: React.FC = memo(() => {
                         />
                         {touched.password && errors.password && <div className={styles.error}>{errors.password}</div>}
                     </div>
-                    <div>
+                    <div className={styles.passwordReplyReg}>
                         <label htmlFor="password">Повторите пароль:</label>
                         <Field
                             id="passwordReplay"

@@ -50,3 +50,14 @@
     margin: 8px;
     vertical-align: middle;
 }
+
+@media screen and (max-width: 640px) {
+    .searchAndAddContact {
+        grid-template-columns: auto;
+        row-gap: 16px;
+    }
+
+    .addContactText {
+        font-size: 14px;
+    }
+}

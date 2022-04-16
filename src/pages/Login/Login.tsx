@@ -77,7 +77,7 @@ export const Login: React.FC = memo(() => {
                         />
                         {touched.login && errors.login && <div className={styles.error}>{errors.login}</div>}
                     </div>
-                    <div>
+                    <div  className={styles.password}>
                         <label htmlFor="password">Пароль:</label>
                         <Field
                             id="password"
@@ -107,9 +107,9 @@ export const Login: React.FC = memo(() => {
                         <span className={styles.redText}>Удалить аккаунт</span>
                     </button>}
                     {isUserRemove &&
-                    <div>Вы уверены что хотите удалить пользователя {values.login}?</div>}
+                    <div className={styles.removeTitle}>Вы уверены что хотите удалить пользователя {values.login}?</div>}
                     {isUserRemove &&
-                    <div>
+                    <div className={styles.buttonWrapper}>
                         <button type="button" className={styles.button} onClick={() => {
                             usersAPI.removeUser(removeUserId)
                                 .then(() => {
@@ -119,7 +119,7 @@ export const Login: React.FC = memo(() => {
                         }}>
                             <span className={styles.redText}>Удалить</span>
                         </button>
-                        <button type="button" className={cn(styles.button, styles.cancelButton)} onClick={() => setIsUserRemove(false)}>
+                        <button type="button" className={styles.button} onClick={() => setIsUserRemove(false)}>
                             Отмена
                         </button>
                     </div>}

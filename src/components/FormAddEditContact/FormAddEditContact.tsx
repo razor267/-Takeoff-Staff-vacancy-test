@@ -20,7 +20,7 @@ export const FormAddEditContact: React.FC<PropsType> = memo(({type, contact, add
 
     const validationsSchema = yup.object({
         name: yup.string().required('Обязательное поле'),
-        number: yup.string().min(5, 'Не менее 5 символов').required('Обязательное поле')
+        number: yup.string().min(5, 'Не менее 5 символов').required('Обязательное поле').nullable()
     })
 
     return (

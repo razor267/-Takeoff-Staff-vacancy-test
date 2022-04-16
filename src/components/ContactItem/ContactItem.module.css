@@ -1,11 +1,13 @@
 .wrapper {
     display: grid;
+    width: 100%;
     column-gap: 16px;
     grid-template-columns: 14% 14% 18% 30% 10% auto auto;
     grid-template-rows: auto max-content max-content;
     grid-template-areas: ". . . . . . ." ". errorName . . errorNumber . .";
     align-items: center;
     justify-items: center;
+    text-align: center;
     background-color: var(--white);
     border-radius: 16px;
     border: solid 2px var(--white);
@@ -99,4 +101,41 @@ input[type='number'] {
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
     -webkit-appearance: none;
+}
+
+@media screen and (max-width: 1200px) {
+    .wrapper {
+        grid-template-columns: 14% 14% 18% 25% 10% auto auto;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .wrapper {
+        grid-template-columns: 14% 14% 18% 20% 10% auto auto;
+        word-break: break-all;
+        font-size: 14px;
+        column-gap: 8px;
+    }
+
+    .wrapper img {
+        width: 12px;
+    }
+
+    .edit, .delete, .save, .cancel {
+        width: 16px;
+        height: 16px;
+    }
+}
+
+@media screen and (max-width: 500px) {
+    .wrapper {
+        grid-template-columns: 14% 14% 18% 15% 10% auto auto;
+        font-size: 12px;
+    }
+}
+
+@media screen and (max-width: 400px) {
+    .wrapper {
+        grid-template-columns: 10% 10% 15% 15% 10% auto auto;
+    }
 }
