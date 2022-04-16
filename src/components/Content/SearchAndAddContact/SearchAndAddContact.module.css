@@ -28,6 +28,7 @@
 }
 
 .addContact {
+    user-select: none;
     margin-right: 32px;
     justify-self: end;
     border-radius: 24px;

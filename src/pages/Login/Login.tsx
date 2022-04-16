@@ -96,7 +96,7 @@ export const Login: React.FC = memo(() => {
                         />
                         {touched.password && errors.password && <div className={styles.error}>{errors.password}</div>}
                     </div>
-                    {isError && <div className={styles.error}>Неверный логин/пароль</div>}
+                    {isError && <div className={styles.errorAuth}>Неверный логин/пароль</div>}
                     {!isUserRemove &&
                     <button type="submit" className={styles.button} onClick={() => handleSubmit}>Вход</button>}
                     {!isUserRemove &&

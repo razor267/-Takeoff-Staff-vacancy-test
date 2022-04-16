@@ -13,12 +13,14 @@
 }
 
 .title {
+    user-select: none;
     font-size: 30px;
     padding-left: 36px;
     cursor: pointer;
 }
 
 .exit {
+    user-select: none;
     justify-self: end;
     align-items: center;
     margin-right: 32px;
@@ -45,6 +47,7 @@
         row-gap: 16px;
         padding: 24px;
     }
+
     .logo {
         width: 40px;
     }

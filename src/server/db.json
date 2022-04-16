@@ -9,6 +9,11 @@
       "id": 2,
       "login": "root",
       "password": "root"
+    },
+    {
+      "id": 3,
+      "login": "qwerty",
+      "password": "123"
     }
   ],
   "contacts": [
@@ -164,6 +169,15 @@
       "address": "Омск, ул.Валовая, д.11, кв.57",
       "number": "79158586595",
       "userId": 2
+    },
+    {
+      "id": 18,
+      "name": "Пётр",
+      "surname": "Байборин",
+      "company": "",
+      "address": "сухановская 12",
+      "number": 12311,
+      "userId": 3
     }
   ]
 }

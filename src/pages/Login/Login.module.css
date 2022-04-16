@@ -3,7 +3,7 @@
     height: max-content;
     width: 100%;
     margin-top: 160px;
-    row-gap: 16px;
+    row-gap: 8px;
     justify-content: center;
     justify-items: center;
     align-items: center;
@@ -30,6 +30,7 @@
 .login, .password, .loginReg, .passwordReg, .passwordReplyReg {
     display: grid;
     grid-template-columns: max-content max-content;
+    grid-template-areas: ". ." ". error";
     align-items: center;
 }
 
@@ -58,9 +59,12 @@
 
 .error {
     text-align: end;
+    padding-top: 8px;
+    justify-self: center;
+    grid-area: error;
 }
 
-.redText, .error {
+.redText, .error, .errorAuth {
     color: var(--red)
 }
 
@@ -96,6 +100,7 @@
 
     .login, .password, .loginReg, .passwordReg, .passwordReplyReg {
         grid-template-columns: max-content;
+        grid-template-areas: "." "." "error";
         row-gap: 8px;
         justify-items: center;
     }
@@ -106,6 +111,10 @@
 
     .loginReg, .passwordReg {
         padding-left: 0;
+    }
+
+    .error {
+        padding-top: 0;
     }
 }
 

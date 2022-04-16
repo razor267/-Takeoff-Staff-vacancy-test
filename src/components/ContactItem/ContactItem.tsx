@@ -19,6 +19,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
     const dispatch = useDispatch()
 
     const [visibleEditForm, setVisibleEditForm] = useState(false)
+    const [isRemove, setIsRemove] = useState(false)
 
     const {name, surname, company, address, number} = item
 
@@ -61,7 +62,7 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
                     <span
                         title='Удалить'
                         className={styles.delete}
-                        onClick={removeContact}
+                        onClick={() => setIsRemove(true)}
                     >
                         <img src={deleteLogo} alt="delete"/>
                     </span>
@@ -81,6 +82,14 @@ export const ContactItem: React.FC<PropsType> = memo(({item, highLight}) => {
                     closeEditForm={closeEditForm}
                     contact={item}
                 />}
+            {isRemove &&
+            <div className={styles.removeWrapper}>
+                <span>Вы уверены что хотите удалить контакт {surname} {name}?</span>
+                <span className={styles.button} onClick={removeContact}>
+                    <span className={styles.removeText}>Удалить</span>
+                </span>
+                <span className={styles.button} onClick={() => setIsRemove(false)}>Отмена</span>
+            </div>}
         </div>
     )
 })

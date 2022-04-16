@@ -90,7 +90,7 @@ export const Content: React.FC = memo(() => {
                         name: '',
                         company: '',
                         address: '',
-                        number: null,
+                        number: '',
                         userId: userId
                     }}
                     addContact={addContact}

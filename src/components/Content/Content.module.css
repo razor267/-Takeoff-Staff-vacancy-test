@@ -5,3 +5,18 @@
     grid-row-gap: 16px;
     height: max-content;
 }
+
+.addContactForm {
+    animation: show 0.3s;
+    transform-origin: top center;
+}
+
+@keyframes show {
+    0% {
+        transform: scaleY(0);
+    }
+
+    100% {
+        transform: scaleY(1);
+    }
+}

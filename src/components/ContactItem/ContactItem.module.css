@@ -103,6 +103,41 @@ input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
 
+.removeWrapper {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: center;
+    align-items: center;
+    column-gap: 16px;
+    padding: 8px;
+}
+
+.button {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 4px 32px;
+    justify-self: center;
+    border: solid 2px var(--green);
+    border-radius: 16px;
+    background: var(--grayDark);
+}
+
+.removeText {
+    color: var(--red);
+}
+
+.remove {
+    text-align: center;
+    padding: 8px;
+    border-radius: 16px;
+    background: var(--white);
+    background: linear-gradient(to left, var(--white) 50%, var(--red) 50%);
+    background-position: 50% 100%;
+    background-size: 200% 100%;
+    transition:all 3s linear;
+}
+
 @media screen and (max-width: 1200px) {
     .wrapper {
         grid-template-columns: 14% 14% 18% 25% 10% auto auto;
