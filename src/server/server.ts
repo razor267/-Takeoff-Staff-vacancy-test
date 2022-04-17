@@ -3,7 +3,7 @@ import { create, defaults, router as jsonRouter } from 'json-server';
 import * as jwt from 'jsonwebtoken';
 import { join } from 'path';
 
-const PORT = process.env.PORT ?? 3000;
+const PORT = process.env.PORT ?? 3001;
 const DATA_PATH = process.env.DATA_PATH ?? __dirname.slice(process.cwd().length + 1);
 const DATA_NAME = process.env.DATA_NAME ?? 'db.json';
 const JWT_SECRET_KEY = process.env.JWT_SECRET_KEY ?? 'secretKey';
@@ -12,7 +12,9 @@ const JWT_EXPIRES_IN = process.env.JWT_EXPIRES_IN ?? '1h';
 const server = create();
 
 const router = jsonRouter(join(DATA_PATH, DATA_NAME));
-const middlewares = defaults();
+const middlewares = defaults({
+    static: './build'
+});
 
 server.use(bodyParser.urlencoded({ extended: true }));
 server.use(bodyParser.json());

@@ -16,6 +16,7 @@
     "body-parser": "^1.20.0",
     "classnames": "^2.3.1",
     "formik": "^2.2.9",
+    "json-server": "^0.17.0",
     "jsonwebtoken": "^8.5.1",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
@@ -28,10 +29,11 @@
     "yup": "^0.32.11"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "npm run server",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "app": "react-scripts start",
     "server": "ts-node src/server/server.ts"
   },
   "eslintConfig": {
@@ -53,7 +55,6 @@
     ]
   },
   "devDependencies": {
-    "json-server": "^0.17.0",
     "ts-node": "^10.7.0"
   }
 }

@@ -127,17 +127,6 @@ input::-webkit-inner-spin-button {
     color: var(--red);
 }
 
-.remove {
-    text-align: center;
-    padding: 8px;
-    border-radius: 16px;
-    background: var(--white);
-    background: linear-gradient(to left, var(--white) 50%, var(--red) 50%);
-    background-position: 50% 100%;
-    background-size: 200% 100%;
-    transition:all 3s linear;
-}
-
 @media screen and (max-width: 1200px) {
     .wrapper {
         grid-template-columns: 14% 14% 18% 25% 10% auto auto;
